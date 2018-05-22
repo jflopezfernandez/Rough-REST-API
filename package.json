@@ -1,0 +1,70 @@
+{
+  "name": "real-time-node-js",
+  "email": "jflopezfernandez@gmail.com",
+  "url": "",
+  "version": "1.0.0",
+  "description": "Real-time Node.js.",
+  "homepage": "",
+  "bugs": {
+    "url": ""
+  },
+  "main": "index.js",
+  "config": {
+    "port": "80"
+  },
+  "bin": {
+    "app": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha"
+  },
+  "author": "Jose Fernando Lopez Fernandez",
+  "license": "BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "devDependencies": {
+    "commander": "^2.15.1",
+    "minimist": "^1.2.0",
+    "mocha": "^5.2.0",
+    "passport": "^0.4.0",
+    "winston": "^2.4.2",
+    "socket.io": "1.0.0"
+  },
+  "keywords": [
+    "async",
+    "data",
+    "file",
+    "read",
+    "io"
+  ],
+  "engines": {
+    "node": ">10.0.0",
+    "npm": ">5.6.0"
+  },
+  "os": [
+    "win32",
+    "linux",
+    "darwin"
+  ],
+  "cpu": [
+    "x64",
+    "ia32",
+    "arm",
+    "mips"
+  ],
+  "dependencies": {
+    "asynquence": "^0.10.2",
+    "asynquence-contrib": "^0.28.2",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "googleapis": "^27.0.0",
+    "gulp": "^3.9.1",
+    "nodemailer": "^4.6.4",
+    "nodemon": "^1.17.4",
+    "readline": "^1.3.0",
+    "socket.io": "^1.0.0"
+  }
+}
