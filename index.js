@@ -1,39 +1,42 @@
 
-const http       = require('http');
-const express    = require('express');
-const handlebars = require('express-handlebars');
+const EXIT_FAILURE = 1;
 
-const app = express();
+const express    = require("express");
+const mongoose   = require("mongoose");
 
-app.engine('handlebars', handlebars());
+const app  = express();
+const db   = mongoose.connect("mongodb://localhost/API");
+const Book = require("./models/Book");
+
+const DEFAULT_PORT = 3000;
+
+// Reference 'db' for now to prevent triggering an error in eslint
+if (db) { process.exit(EXIT_FAILURE); }
+
 app.use(express.static(__dirname + "/public"));
-app.set('view engine', 'handlebars');
+app.set("view engine", "handlebars");
 
 const router = express.Router();
 
-router.route('/Book')
+router.route("/Books")
     .get((request, response) => {
-        let responseJSON = { hello: "This is my API" };
+        Book.find((error, books) => {
+            if (error) {
+                response.status(500).send(error);
+            } else {
+                response.json(books);
+            }
+        });
+    });
 
-        return response.json(responseJSON);
-    })
-    .post()
-;
+app.use("/api", router);
 
-app.use('/api', router);
-
-app.get('/', (request, response) => {
-    response.send('Welcome to my API!');
-});
-
-app.get('/api/toppings', (request, response) => {
-    response.status(200);
-    response.set('Content-Type', 'application/json');
-    response.set([ 'pepperoni', 'sausage', 'spinach', 'mushrooms', 'ham', 'pineapple' ]);
+app.get("/", (request, response) => {
+    response.send("Welcome to my API!");
 });
 
 const port = process.env.PORT || DEFAULT_PORT;
 
-app.listen(port, () => {
-    console.log(`Running on port ${port}`);
+app.listen(port, (request, response) => {
+    response.status(500).send(response);
 });
